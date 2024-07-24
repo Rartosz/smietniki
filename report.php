@@ -1,16 +1,23 @@
 <?php
 include 'db.php';
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    die("Musisz być zalogowany, aby zgłaszać przepełnienie lub wysprzątanie.");
+}
+
+$user_id = $_SESSION['user_id'];
 
 if (isset($_GET['qr_id'])) {
     $qr_id = $_GET['qr_id'];
 
-    $sql = "SELECT * FROM smietniki WHERE qr_id='$qr_id'";
+    $sql = "SELECT * FROM smietniki WHERE qr_id='$qr_id' AND user_id='$user_id'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $trashcan = $result->fetch_assoc();
     } else {
-        echo "Nie znaleziono śmietnika.";
+        echo "Nie znaleziono śmietnika lub nie masz uprawnień do jego przeglądania.";
         exit();
     }
 } else {
@@ -20,14 +27,14 @@ if (isset($_GET['qr_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['report_full'])) {
-        $sql = "UPDATE smietniki SET status='Przepełniony' WHERE qr_id='$qr_id'";
+        $sql = "UPDATE smietniki SET status='Przepełniony' WHERE qr_id='$qr_id' AND user_id='$user_id'";
         if ($conn->query($sql) === TRUE) {
             echo "Śmietnik zgłoszony jako przepełniony.";
         } else {
             echo "Błąd podczas zgłaszania: " . $conn->error;
         }
     } elseif (isset($_POST['resolve_full'])) {
-        $sql = "UPDATE smietniki SET status='Wysprzątany' WHERE qr_id='$qr_id'";
+        $sql = "UPDATE smietniki SET status='Wysprzątany' WHERE qr_id='$qr_id' AND user_id='$user_id'";
         if ($conn->query($sql) === TRUE) {
             echo "Śmietnik zgłoszony jako wysprzątany.";
         } else {
@@ -51,13 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <p>Lokalizacja: <?php echo htmlspecialchars($trashcan['location']); ?></p>
 
     <?php if ($trashcan['status'] == 'Przepełniony'): ?>
-        <form method="POST" action="report_full.php">
-            <input type="hidden" name="id" value="<?php echo $trashcan['id']; ?>">
+        <form method="POST" action="report.php?qr_id=<?php echo $qr_id; ?>">
             <button name="resolve_full" type="submit">Zgłoś, że śmietnik został wysprzątany</button>
         </form>
     <?php else: ?>
-        <form method="POST" action="report_full.php">
-            <input type="hidden" name="id" value="<?php echo $trashcan['id']; ?>">
+        <form method="POST" action="report.php?qr_id=<?php echo $qr_id; ?>">
             <button name="report_full" type="submit">Zgłoś przepełniony śmietnik</button>
         </form>
     <?php endif; ?>

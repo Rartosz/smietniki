@@ -1,22 +1,25 @@
 <?php
 include 'db.php';
-include 'phpqrcode/qrlib.php'; // Ścieżka do biblioteki QR Code
+include 'phpqrcode/qrlib.php';
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    die("Musisz być zalogowany, aby dodać śmietnik.");
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $location = $_POST['location'];
     $qr_id = $_POST['qr_id'];
+    $user_id = $_SESSION['user_id'];
 
-    // Generowanie unikalnego URL do zgłoszenia
     $qr_url = "http://localhost/report.php?qr_id=" . urlencode($qr_id);
-    
-    // Generowanie QR kodu
     $qr_path = 'qrcodes/' . $qr_id . '.png';
     if (!file_exists('qrcodes')) {
-        mkdir('qrcodes', 0777, true); // Tworzenie katalogu, jeśli nie istnieje
+        mkdir('qrcodes', 0777, true);
     }
     QRcode::png($qr_url, $qr_path);
 
-    $sql = "INSERT INTO smietniki (location, qr_id) VALUES ('$location', '$qr_id')";
+    $sql = "INSERT INTO smietniki (location, qr_id, user_id) VALUES ('$location', '$qr_id', '$user_id')";
     if ($conn->query($sql) === TRUE) {
         echo "Nowy rekord został pomyślnie dodany.";
     } else {
