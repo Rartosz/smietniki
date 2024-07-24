@@ -1,0 +1,12 @@
+/* Przykładowe style */
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+form {
+    margin-bottom: 20px;
+}
+#trashcanList img {
+    width: 100px;
+    height: auto;
+}
