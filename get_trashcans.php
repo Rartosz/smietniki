@@ -1,14 +1,7 @@
 <?php
 include 'db.php';
-session_start();
 
-if (!isset($_SESSION['user_id'])) {
-    die("Musisz być zalogowany, aby przeglądać śmietniki.");
-}
-
-$user_id = $_SESSION['user_id'];
-
-$sql = "SELECT * FROM smietniki WHERE user_id='$user_id'";
+$sql = "SELECT * FROM smietniki";
 $result = $conn->query($sql);
 
 $trashcans = [];

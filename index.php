@@ -21,8 +21,8 @@ if (!isset($_SESSION['user_id'])) {
         <form id="addTrashcanForm">
             <label for="location">Lokalizacja:</label>
             <input type="text" id="location" required>
-            <label for="qrId">ID QR Kodu:</label>
-            <input type="text" id="qrId" required>
+            <!-- <label for="qrId">ID QR Kodu:</label>
+            <input type="text" id="qrId" required> -->
             <button type="submit">Dodaj Śmietnik</button>
         </form>
         <h2>Lista Śmietników</h2>
