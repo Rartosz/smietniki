@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: `location=${location}&qr_id=${qrId}`
+            body: `location=${encodeURIComponent(location)}&qr_id=${encodeURIComponent(qrId)}`
         })
         .then(response => response.text())
         .then(data => {
@@ -33,20 +33,25 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(response => response.json())
             .then(data => {
                 trashcanList.innerHTML = '';
-                data.forEach(trashcan => {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <span class="location">${trashcan.location}</span>
-                        <span class="qrCode">QR: ${trashcan.qr_id}</span>
-                        <img src="qrcodes/${trashcan.qr_id}.png" alt="QR Code">
-                        <button onclick="reportFull(${trashcan.id})">Zgłoś przepełnienie</button>
-                        ${trashcan.status === 'Przepełniony' ? 
-                            `<button onclick="resolveFull(${trashcan.id})">Zgłoś, że śmietnik został wysprzątany</button>` 
-                            : ''
-                        }
-                    `;
-                    trashcanList.appendChild(li);
-                });
+
+                if (data.length === 0) {
+                    trashcanList.innerHTML = '<li>Brak śmietników do wyświetlenia</li>';
+                } else {
+                    data.forEach(trashcan => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `
+                            <span class="location">${trashcan.location}</span>
+                            <span class="qrCode">QR: ${trashcan.qr_id}</span>
+                            <img src="qrcodes/${trashcan.qr_id}.png" alt="QR Code">
+                            <button onclick="reportFull(${trashcan.id})">Zgłoś przepełnienie</button>
+                            ${trashcan.status === 'Przepełniony' ? 
+                                `<button onclick="resolveFull(${trashcan.id})">Zgłoś, że śmietnik został wysprzątany</button>` 
+                                : ''
+                            }
+                        `;
+                        trashcanList.appendChild(li);
+                    });
+                }
             })
             .catch(error => console.error('Error:', error));
     }
