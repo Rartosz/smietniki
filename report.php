@@ -19,22 +19,15 @@ if (isset($_GET['qr_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['report_full'])) {
+    // Przechodnie mogą tylko zgłaszać śmietnik jako przepełniony
+    if (isset($_POST['report_full']) && $trashcan['status'] != 'Przepełniony') {
         $sql = "UPDATE smietniki SET status='Przepełniony' WHERE qr_id='$qr_id'";
         if ($conn->query($sql) === TRUE) {
             echo "Śmietnik zgłoszony jako przepełniony.";
         } else {
             echo "Błąd podczas zgłaszania: " . $conn->error;
         }
-    } elseif (isset($_POST['resolve_full'])) {
-        $sql = "UPDATE smietniki SET status='Wysprzątany' WHERE qr_id='$qr_id'";
-        if ($conn->query($sql) === TRUE) {
-            echo "Śmietnik zgłoszony jako wysprzątany.";
-        } else {
-            echo "Błąd podczas rozwiązywania zgłoszenia: " . $conn->error;
-        }
     }
-
     $conn->close();
 }
 ?>
@@ -51,9 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <p>Lokalizacja: <?php echo htmlspecialchars($trashcan['location']); ?></p>
 
     <?php if ($trashcan['status'] == 'Przepełniony'): ?>
-        <form method="POST">
-            <button name="resolve_full" type="submit">Zgłoś, że śmietnik został wysprzątany</button>
-        </form>
+        <p>Śmietnik jest już zgłoszony jako przepełniony. Służby zostały powiadomione.</p>
     <?php else: ?>
         <form method="POST">
             <button name="report_full" type="submit">Zgłoś przepełniony śmietnik</button>
