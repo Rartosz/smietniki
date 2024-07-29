@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 `<button onclick="resolveFull(${trashcan.id})">Zgłoś, że śmietnik został wysprzątany</button>` 
                                 : ''
                             }
+                            <button onclick="deleteTrashcan(${trashcan.id})">Usuń</button>
                         `;
                         trashcanList.appendChild(li);
                     });
@@ -86,5 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
             loadTrashcans();
         })
         .catch(error => console.error('Error:', error));
+    }
+
+    window.deleteTrashcan = function(id) {
+        if (confirm('Czy na pewno chcesz usunąć ten śmietnik?')) {
+            fetch('delete_trashcan.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `id=${id}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                loadTrashcans();
+            })
+            .catch(error => console.error('Error:', error));
+        }
     }
 });
