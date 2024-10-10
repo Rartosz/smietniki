@@ -43,7 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="location">${trashcan.location}</span>
                             <span class="qrCode">QR: ${trashcan.qr_id}</span>
                             <img src="qrcodes/${trashcan.qr_id}.png" alt="QR Code">
-                            <button onclick="reportFull(${trashcan.id})">Zgłoś przepełnienie</button>
+                            
+                            ${trashcan.status === 'Przepełniony' ? 
+                                '' :
+                                `<button onclick="reportFull(${trashcan.id})">Zgłoś przepełnienie</button>`
+                            }
                             ${trashcan.status === 'Przepełniony' ? 
                                 `<button onclick="resolveFull(${trashcan.id})">Zgłoś, że śmietnik został wysprzątany</button>` 
                                 : ''

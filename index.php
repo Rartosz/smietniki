@@ -40,6 +40,8 @@ $role = $user['role'];
             <form id="addTrashcanForm">
                 <label for="location">Lokalizacja:</label>
                 <input type="text" id="location" required>
+                <!-- <label for="qrId">ID QR Kodu:</label> -->
+                <input type="text" id="qrId" value="1" hidden>
                 <button type="submit">Dodaj Śmietnik</button>
             </form>
             <h2>Lista Śmietników</h2>
