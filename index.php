@@ -47,33 +47,6 @@ $role = $user['role'];
             <h2>Lista Śmietników</h2>
             <ul id="trashcanList"></ul>
 
-            <h2>Lista Pracowników</h2>
-            <ul id="employeeList">
-                <?php
-                // Pobierz listę pracowników przypisanych do zalogowanego użytkownika (właściciela)
-                $owner_id = $_SESSION['user_id'];
-                $sql = "SELECT * FROM users WHERE owner_id = $owner_id";
-                $result = $conn->query($sql);
-
-                while ($row = $result->fetch_assoc()) {
-                    echo "<li>" . htmlspecialchars($row['username']) . " - " . htmlspecialchars($row['email']) . "</li>";
-                }
-                ?>
-            </ul>
-
-            <h2>Dodaj Nowego Pracownika</h2>
-            <form id="addEmployeeForm" method="POST" action="register_employee.php">
-                <label for="username">Nazwa użytkownika:</label>
-                <input type="text" id="username" name="username" required><br>
-                <label for="password">Hasło:</label>
-                <input type="password" id="password" name="password" required><br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br>
-                <button type="submit">Dodaj Pracownika</button>
-            </form>
-        <?php elseif ($role === 'employee'): ?>
-            <h2>Panel Pracownika</h2>
-            <p>Witaj, <?php echo htmlspecialchars($user['username']); ?>. Skontaktuj się z administratorem, aby uzyskać więcej informacji.</p>
         <?php else: ?>
             <p>Nieznana rola użytkownika. Skontaktuj się z administratorem.</p>
         <?php endif; ?>
