@@ -1,0 +1,8 @@
+[10-Oct-2024 20:57:45 Europe/Helsinki] PHP Warning:  mysqli::__construct(): (HY000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/lihzikjz/codescriptum.pl/smietniki/db.php on line 7
+[10-Oct-2024 21:01:52 Europe/Helsinki] PHP Notice:  Undefined index: role in /home/lihzikjz/codescriptum.pl/smietniki/index.php on line 24
+[10-Oct-2024 21:02:09 Europe/Helsinki] PHP Notice:  Undefined index: role in /home/lihzikjz/codescriptum.pl/smietniki/index.php on line 24
+[10-Oct-2024 21:02:53 Europe/Helsinki] PHP Notice:  Undefined variable: role in /home/lihzikjz/codescriptum.pl/smietniki/index.php on line 36
+[10-Oct-2024 21:02:55 Europe/Helsinki] PHP Notice:  Undefined variable: role in /home/lihzikjz/codescriptum.pl/smietniki/index.php on line 36
+[10-Oct-2024 21:06:37 Europe/Helsinki] PHP Notice:  Undefined variable: role in /home/lihzikjz/codescriptum.pl/smietniki/index.php on line 36
+[10-Oct-2024 21:08:56 Europe/Helsinki] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/lihzikjz/codescriptum.pl/smietniki/index.php on line 16
+[10-Oct-2024 21:08:57 Europe/Helsinki] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/lihzikjz/codescriptum.pl/smietniki/index.php on line 16

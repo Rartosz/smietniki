@@ -32,26 +32,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
     <title>Logowanie</title>
 </head>
 <body>
-    <main class="login">
-        <h1 class="login__h1">Zaloguj się</h1>
-
-        <form method="POST" action="login.php" class="login__form">
-
-            <input type="text" id="username" name="username" required placeholder="Nazwa użytkownika" class="login__input">
-
-            <input type="password" id="password" name="password" required placeholder="Hasło" class="login__input">
-
-            <button type="submit" class="login__submit">Zaloguj się</button>
-
-            <a class="login__link" href="register.php">Nie posiadasz konta? Zarejestruj się!</a>
-        </form>
-    </main>
-
-
-    
+    <h1>Logowanie</h1>
+    <form method="POST" action="login.php">
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" name="password" required><br>
+        <button type="submit">Zaloguj się</button>
+    </form>
+    <a href="register.php">Zarejestruj się</a>
 </body>
 </html>

@@ -39,35 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     data.forEach(trashcan => {
                         const li = document.createElement('li');
-                        
                         li.innerHTML = `
-                            <img src="qrcodes/${trashcan.qr_id}.png" alt="QR Code" class="dashboard__qrCode">
-                            <span class="location" class="dashboard__loaction">Lokalizacja: ${trashcan.location}</span>
-                            <span class="qrCode" class="dashboard__id">ID: ${trashcan.qr_id}</span>
+                            <span class="location">${trashcan.location}</span>
+                            <span class="qrCode">QR: ${trashcan.qr_id}</span>
+                            <img src="qrcodes/${trashcan.qr_id}.png" alt="QR Code">
                             
-                            
-                            ${trashcan.status === 'Przepełniony' ? 
+                            ${trashcan.status === 'Przepelniony' ? 
                                 '' :
-                                `<button class="dashboard__button" onclick="reportFull(${trashcan.id})">Zgłoś przepełnienie</button>`
+                                `<button onclick="reportFull(${trashcan.id})">Zgłoś przepełnienie</button>`
                             }
-                            ${trashcan.status === 'Przepełniony' ? 
-                                `<button class="dashboard__button" onclick="resolveFull(${trashcan.id})">Zgłoś, że śmietnik został wysprzątany</button>` 
+                            ${trashcan.status === 'Przepelniony' ? 
+                                `<button onclick="resolveFull(${trashcan.id})">Zgłoś, że śmietnik został wysprzątany</button>` 
                                 : ''
                             }
-                            <button class="dashboard__button dashboard__button--red" onclick="deleteTrashcan(${trashcan.id})">Usuń</button>
+                            <button onclick="deleteTrashcan(${trashcan.id})">Usuń</button>
                         `;
                         trashcanList.appendChild(li);
-                        if(trashcan.status === 'Przepełniony')
-                        {
-                            li.classList.add("dashboard__trashcanItem");
-                            li.classList.add("dashboard__trashcanItem--red");
-                        }
-                        else 
-                        {
-                            li.classList.add("dashboard__trashcanItem");
-                            
-                        }
-                        
                     });
                 }
             })

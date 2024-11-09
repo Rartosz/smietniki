@@ -59,27 +59,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zgłoszenie przepełnionego śmietnika</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <h1>Zgłoś stan śmietnika</h1>
-    <p>Lokalizacja: <?php echo htmlspecialchars($trashcan['location']); ?></p>
 
-    <?php if ($isEmployee): ?>
+    <main class="report">
+        <h1 class="report__h1">Zgłoś stan śmietnika</h1>
+        <p class="report__localisation">Lokalizacja: <?php echo htmlspecialchars($trashcan['location']); ?></p>
+
+
+
+        <?php if ($isEmployee): ?>
         <?php if ($trashcan['status'] == 'Przepełniony'): ?>
-            <form method="POST">
-                <button name="resolve_full" type="submit">Zgłoś, że śmietnik został wysprzątany</button>
+            <form method="POST" class="report__form">
+                <button name="resolve_full" type="submit" class="report__submit">Zgłoś, że śmietnik został wysprzątany</button>
             </form>
         <?php else: ?>
-            <p>Śmietnik nie jest zgłoszony jako przepełniony.</p>
-        <?php endif; ?>
-    <?php else: ?>
-        <?php if ($trashcan['status'] == 'Przepełniony'): ?>
-            <p>Śmietnik jest już zgłoszony jako przepełniony. Służby zostały powiadomione.</p>
+                <p>Śmietnik nie jest zgłoszony jako przepełniony.</p>
+            <?php endif; ?>
         <?php else: ?>
-            <form method="POST">
-                <button name="report_full" type="submit">Zgłoś przepełniony śmietnik</button>
-            </form>
+            <?php if ($trashcan['status'] == 'Przepełniony'): ?>
+                <p>Śmietnik jest już zgłoszony jako przepełniony. Służby zostały powiadomione.</p>
+            <?php else: ?>
+                <form method="POST" class="report__form">
+                    <button name="report_full" type="submit" class="report__submit">Zgłoś przepełniony śmietnik</button>
+                </form>
+            <?php endif; ?>
         <?php endif; ?>
-    <?php endif; ?>
+    </main>
+
+
 </body>
 </html>

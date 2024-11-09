@@ -1,0 +1,346 @@
+.login 
+{
+    width:100%;
+    height:100%;
+    @include flex(center,center,column);
+    gap:20px;
+    padding:20px;
+
+    min-height: 100vh;
+
+    &__h1 
+    {
+        color:black;
+        font-size:30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    &__form 
+    {
+        @include flex(center,center,column);
+        gap:10px;
+    }
+
+
+    &__input 
+    {
+        width: 100%;
+        max-width: 500px;
+        padding:5px 10px;
+        border:2px solid $green;
+        border-radius: 5px;
+        background:white;
+        outline:none;
+        font-family: $font;
+        font-weight: 500;
+        font-size:16px;
+        letter-spacing: 0.5px;
+        color:black;
+    }
+
+    &__submit 
+    {
+        width:100%;
+        max-width: 500px;
+        border:2px solid $green;
+        background:$green;
+        font-size:16px;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        color:white;
+        padding:5px 30px;
+        font-family: $font;
+        outline:none;
+        text-decoration: none;
+        transition:0.4s;
+        border-radius: 5px;
+        &:hover 
+        {
+            transition:0.4s;
+            background:transparent;
+            color:$green;
+            cursor: pointer;
+        }
+    }
+
+    &__link 
+    {
+        color:$green;
+        font-size:14px;
+        font-weight: 500;
+        outline:none;
+    }
+}
+
+
+
+
+
+
+
+
+.dashboard 
+{
+    width:100%;
+    height:100%;
+    @include flex(center,center,column);
+    gap:20px;
+    padding:20px;
+
+    min-height: 100vh;
+
+    &__h1 
+    {
+        color:black;
+        font-size:30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        margin:0 0 30px 0;
+    }
+
+
+    &__container
+    {
+        max-width:1100px;
+        width:1100px;
+        @include flex(center,center,column);
+        gap:20px;
+        margin:0 0 30px 0;
+
+        &--center 
+        {
+            @include flex(center,center,column);
+        }
+
+    }
+
+
+    &__h2
+    {
+        color:black;
+        font-size:24px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        width:100%;
+        text-align: center
+    }
+
+    &__addTrashcanForm
+    {
+        @include flex(center,center,column);
+        gap:10px;
+        
+    }
+
+
+    &__input 
+    {
+        width: 100%;
+        max-width: 500px;
+        padding:5px 10px;
+        border:2px solid $green;
+        border-radius: 5px;
+        background:white;
+        outline:none;
+        font-family: $font;
+        font-weight: 500;
+        font-size:16px;
+        letter-spacing: 0.5px;
+        color:black;
+    }
+
+    &__submit 
+    {
+        width:100%;
+        max-width: 500px;
+        border:2px solid $green;
+        background:$green;
+        font-size:16px;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        color:white;
+        padding:5px 30px;
+        font-family: $font;
+        outline:none;
+        text-decoration: none;
+        transition:0.4s;
+        border-radius: 5px;
+        &:hover 
+        {
+            transition:0.4s;
+            background:transparent;
+            color:$green;
+            cursor: pointer;
+        }
+    }
+
+
+    &__trashcans 
+    {
+        @include flex(flex-start,flex-start,row);
+        flex-wrap: wrap;
+        gap:30px;
+        width:100%;
+        list-style-type: none;
+    }
+
+    &__trashcanItem 
+    {
+        width:500px;
+        border-radius: 10px;
+        padding:15px 20px;
+        @include flex(center,center,column);
+        gap:10px;
+        border:2px solid $green;
+
+        &--red 
+        {
+            border:2px solid rgb(221, 41, 41);
+            background:rgb(253, 137, 137);
+            color:white !important;
+        }
+    }
+
+    &__qrCode 
+    {
+        width:100px;
+        height:100px;
+        border:2px solid $green;
+        margin:0 10px 0 0;
+    }
+
+    &__loaction 
+    {
+        color:black;
+        font-size:16px;
+        text-align: center;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+
+    }
+
+
+    &__id
+    {
+        color:black;
+        font-size:12px;
+        text-align: center;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        
+    }
+    
+    &__button 
+    {
+        width:100%;
+        border:2px solid $green;
+        background:$green;
+        font-size:16px;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        color:white;
+        padding:5px 30px;
+        font-family: $font;
+        outline:none;
+        text-decoration: none;
+        transition:0.4s;
+        border-radius: 5px;
+        &:hover 
+        {
+            transition:0.4s;
+            background:transparent;
+            color:$green;
+            cursor: pointer;
+        }
+
+        &--red 
+        {
+            background:rgb(221, 41, 41);
+            border:2px solid rgb(221, 41, 41);
+            &:hover 
+            {
+                transition:0.4s;
+                background:transparent;
+                color:rgb(221, 41, 41);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+.report 
+{
+    width:100%;
+    height:100%;
+    @include flex(center,center,column);
+    gap:20px;
+    padding:20px;
+
+    min-height: 100vh;
+
+    &__h1 
+    {
+        color:black;
+        font-size:30px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    &__localisation 
+    {
+        color:black;
+        font-size:16px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    &__form 
+    {
+        @include flex(center,center,column);
+        gap:10px;
+    }
+
+
+    &__input 
+    {
+        width: 100%;
+        max-width: 500px;
+        padding:5px 10px;
+        border:2px solid $green;
+        border-radius: 5px;
+        background:white;
+        outline:none;
+        font-family: $font;
+        font-weight: 500;
+        font-size:16px;
+        letter-spacing: 0.5px;
+        color:black;
+    }
+
+    &__submit 
+    {
+        width:100%;
+        max-width: 500px;
+        border:2px solid $green;
+        background:$green;
+        font-size:16px;
+        letter-spacing: 0.5px;
+        font-weight: 500;
+        color:white;
+        padding:5px 30px;
+        font-family: $font;
+        outline:none;
+        text-decoration: none;
+        transition:0.4s;
+        border-radius: 5px;
+        &:hover 
+        {
+            transition:0.4s;
+            background:transparent;
+            color:$green;
+            cursor: pointer;
+        }
+    }
+}

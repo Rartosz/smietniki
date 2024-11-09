@@ -25,27 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejestracja właściciela</title>
-    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-
-
-
-    <main class="login">
-        <h1 class="login__h1">Zarejestruj się</h1>
-
-        <form method="POST" action="register.php" class="login__form">
-
-            <input type="text" id="username" name="username" required placeholder="Nazwa użytkownika" class="login__input">
-
-            <input type="email" id="email" name="email" required placeholder="Email" class="login__input">
-
-            <input type="password" id="password" name="password" required placeholder="Hasło" class="login__input">
-
-            <button type="submit" class="login__submit">Zarejestruj się</button>
-
-            <a class="login__link" href="login.php">Masz już konto? Zaloguj się!</a>
-        </form>
-    </main>
+    <h1>Rejestracja właściciela</h1>
+    <form method="POST" action="register.php">
+        <label for="username">Nazwa użytkownika:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Hasło:</label>
+        <input type="password" id="password" name="password" required><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        <button type="submit">Zarejestruj się</button>
+    </form>
+    <a href="login.php">Zaloguj się</a>
 </body>
 </html>
